@@ -1,0 +1,2 @@
+# suap-openapi
+openapi generator
