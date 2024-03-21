@@ -132,7 +132,6 @@
 			</plugin>
 			
 			
-			
 			<!-- Generazione del codice server OpenAPI -->
 			<!-- See https://openapi-generator.tech/docs/generators/java/ for config options -->
 			<plugin>
@@ -167,8 +166,8 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sufo.bofo.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sufo.bofo.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.fo.controller</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.fo.model</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -194,8 +193,8 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sufo.boet.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sufo.boet.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.et.controller</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.et.model</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -221,8 +220,8 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sufo.bori.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sufo.bori.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.ri.controller</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.ri.model</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -248,8 +247,8 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sufo.fobo.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sufo.fobo.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sufo.bo.controller</apiPackage>
+								<modelPackage>it.infocamere.suap.sufo.bo.model</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -275,8 +274,8 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sufo.focu.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sufo.focu.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sufo.cu.controller</apiPackage>
+								<modelPackage>it.infocamere.suap.sufo.cu.model</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
