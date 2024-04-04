@@ -139,19 +139,7 @@
 			  <artifactId>openapi-generator-maven-plugin</artifactId>
 			  <version>${openapi-generator-maven-plugin.version}</version>
 				<executions>
-
-					<!-- BackOffice to FrontOffice (botofo-server-lib) -->
-					<execution>
-						<id>bo_to_fo-api</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/bo_to_fo.yaml</inputSpec>
-							<!-- README#openapi-generator-spring-metadata -->
-							<!--<generatorName>java</generatorName>-->												 
-							<generatorName>spring</generatorName>
+					
 							<!-- README#openapi-generator-spring-config-options -->
 							<!--
 	                        <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
@@ -163,16 +151,28 @@
 	                        <generateModelTests>false</generateModelTests>
 	                        <generateSupportingFiles>false</generateSupportingFiles>
 	                        -->
+
+					<!-- BackOffice to FrontOffice (botofo-server-lib) -->
+					
+					<execution>
+						<id>bo_to_fo-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/bo_to_fo.yaml</inputSpec>
+							<generatorName>spring</generatorName>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.fo.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.fo.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.controller.fo</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
-								
+								<serializableModel>true</serializableModel>
 								<delegatePattern>false</delegatePattern>
                                 <useResponseEntity>true</useResponseEntity>
                                 <useSpringController>true</useSpringController>
@@ -181,6 +181,7 @@
 					</execution>
 					
 					<!-- BackOffice to EnteTerzo (botoet-server-lib) -->
+					
 					<execution>
 						<id>bo_to_et-api</id>
 						<phase>generate-sources</phase>
@@ -193,13 +194,13 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.et.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.et.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.controller.et</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
-								
+								<serializableModel>true</serializableModel>
 								<delegatePattern>false</delegatePattern>
                                 <useResponseEntity>true</useResponseEntity>
                                 <useSpringController>true</useSpringController>
@@ -208,6 +209,7 @@
 					</execution>
 					
 					<!-- BackOffice to RegistroImprese (botori-server-lib) -->
+					
 					<execution>
 						<id>bo_to_ri-api</id>
 						<phase>generate-sources</phase>
@@ -220,13 +222,13 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.ri.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.ri.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.controller.ri</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
-								
+								<serializableModel>true</serializableModel>
 								<delegatePattern>false</delegatePattern>
                                 <useResponseEntity>true</useResponseEntity>
                                 <useSpringController>true</useSpringController>
@@ -235,6 +237,7 @@
 					</execution>
 					
 					<!-- FrontOffice to BackOffice (fotobo-server-lib) -->
+					
 					<execution>
 						<id>fo_to_bo-api</id>
 						<phase>generate-sources</phase>
@@ -253,7 +256,7 @@
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
-								
+								<serializableModel>true</serializableModel>
 								<delegatePattern>false</delegatePattern>
                                 <useResponseEntity>true</useResponseEntity>
                                 <useSpringController>true</useSpringController>
@@ -262,6 +265,7 @@
 					</execution>
 					
 					<!-- FrontOffice to ComUnica (fotobo-server-lib) -->
+					
 					<execution>
 						<id>fo_to_cu-api</id>
 						<phase>generate-sources</phase>
@@ -280,7 +284,7 @@
                                 <useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
-								
+								<serializableModel>true</serializableModel>
 								<delegatePattern>false</delegatePattern>
                                 <useResponseEntity>true</useResponseEntity>
                                 <useSpringController>true</useSpringController>
