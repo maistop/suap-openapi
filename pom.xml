@@ -57,6 +57,7 @@
 		<jakarta.annotation-api.version>2.0.0</jakarta.annotation-api.version>
 		<jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
 		<jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+		<openapi.spec.path>${project.basedir}/src/main/resources/openapi/main</openapi.spec.path>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -161,7 +162,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/bo_to_fo.yaml</inputSpec>
+							<inputSpec>${openapi.spec.path}/bo_to_fo.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
@@ -189,7 +190,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/bo_to_et.yaml</inputSpec>
+							<inputSpec>${openapi.spec.path}/bo_to_et.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
@@ -217,7 +218,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/bo_to_ri.yaml</inputSpec>
+							<inputSpec>${openapi.spec.path}/bo_to_ri.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
@@ -245,7 +246,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/fo_to_bo.yaml</inputSpec>
+							<inputSpec>${openapi.spec.path}/fo_to_bo.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
@@ -273,7 +274,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/fo_to_cu.yaml</inputSpec>
+							<inputSpec>${openapi.spec.path}/fo_to_cu.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
@@ -292,6 +293,33 @@
 						</configuration>
 					</execution>
 					
+					<!-- FrontOffice for FDI (Classificazione FDI) -->
+					
+					<execution>
+						<id>classificazione-fdi</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/fdi/FO-TO-BO-Classificazione-FDI.yml</inputSpec>
+							<generatorName>spring</generatorName>
+							<configOptions>
+								<sourceFolder>src/main/java</sourceFolder>
+								<dateLibrary>java8</dateLibrary>
+								<apiPackage>it.infocamere.suap.fdi.controller</apiPackage>
+								<modelPackage>it.infocamere.suap.fdi.model</modelPackage>
+                                <openApiNullable>false</openApiNullable>
+                                <useBeanValidation>false</useBeanValidation>
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+								<useJakartaEe>false</useJakartaEe>
+								<serializableModel>true</serializableModel>
+								<delegatePattern>false</delegatePattern>
+                                <useResponseEntity>true</useResponseEntity>
+                                <useSpringController>true</useSpringController>
+							</configOptions>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 		</plugins>
