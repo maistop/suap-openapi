@@ -54,9 +54,9 @@
 		<swagger-annotations.version>2.2.18</swagger-annotations.version>
 		<jaxb-api.version>2.3.1</jaxb-api.version>
 		<dependency-check-maven.version>6.0.5</dependency-check-maven.version>
-		<jakarta.annotation-api.version>2.0.0</jakarta.annotation-api.version>
+		<jakarta.annotation-api.version>1.3.2</jakarta.annotation-api.version>
 		<jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
-		<jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+		<jakarta.validation-api.version>2.0.1.Final</jakarta.validation-api.version>
 		<openapi.spec.path>${project.basedir}/src/main/resources/openapi/approve01</openapi.spec.path>
 	</properties>
 	<dependencies>
@@ -79,7 +79,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
+
 		<!--Librerie per codice autogenerato openapi -->
 		<dependency>
 			<groupId>org.openapitools</groupId>
@@ -104,25 +104,29 @@
 		</dependency>
 
 		<!-- Jakarta -->
-		<!--
 		<dependency>
-		    <groupId>jakarta.annotation</groupId>
-		    <artifactId>jakarta.annotation-api</artifactId>
-		    <version>${jakarta.annotation-api.version}</version>
-		    <scope>provided</scope>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>${jakarta.annotation-api.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>jakarta.servlet</groupId>
-		    <artifactId>jakarta.servlet-api</artifactId>
-		    <version>${jakarta.servlet-api.version}</version>
-		    <scope>provided</scope>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>${jakarta.servlet-api.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		    <groupId>jakarta.validation</groupId>
-		    <artifactId>jakarta.validation-api</artifactId>
-		    <version>${jakarta.validation-api.version}</version>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${jakarta.validation-api.version}</version>
 		</dependency>
-		-->
+
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -131,8 +135,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
-			
+
+
 			<!-- Generazione del codice server OpenAPI -->
 			<!-- See https://openapi-generator.tech/docs/generators/java/ for config options -->
 			<plugin>
@@ -140,7 +144,7 @@
 			  <artifactId>openapi-generator-maven-plugin</artifactId>
 			  <version>${openapi-generator-maven-plugin.version}</version>
 				<executions>
-					
+
 							<!-- README#openapi-generator-spring-config-options -->
 							<!--
 	                        <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
@@ -154,7 +158,7 @@
 	                        -->
 
 					<!-- BackOffice to FrontOffice (botofo-server-lib) -->
-					
+
 					<execution>
 						<id>bo_to_fo-api</id>
 						<phase>generate-sources</phase>
@@ -169,20 +173,21 @@
 								<dateLibrary>java8</dateLibrary>
 								<apiPackage>it.infocamere.suap.sucr.controller.fo</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
-                                <openApiNullable>false</openApiNullable>
-                                <useBeanValidation>false</useBeanValidation>
+								<delegatePattern>true</delegatePattern>
+								<useTags>true</useTags>
+								<openApiNullable>false</openApiNullable>
+								<useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
 								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
-                                <useResponseEntity>true</useResponseEntity>
-                                <useSpringController>true</useSpringController>
+								<useResponseEntity>true</useResponseEntity>
+								<useSpringController>true</useSpringController>
 							</configOptions>
 						</configuration>
 					</execution>
-					
-					<!-- BackOffice to EnteTerzo (botoet-server-lib) -->
-					
+
+					 <!-- BackOffice to EnteTerzo (botoet-server-lib) -->
+
 					<execution>
 						<id>bo_to_et-api</id>
 						<phase>generate-sources</phase>
@@ -192,25 +197,27 @@
 						<configuration>
 							<inputSpec>${openapi.spec.path}/bo_to_et.yaml</inputSpec>
 							<generatorName>spring</generatorName>
+							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring</templateResourcePath>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
 								<apiPackage>it.infocamere.suap.sucr.controller.et</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
-                                <openApiNullable>false</openApiNullable>
-                                <useBeanValidation>false</useBeanValidation>
+								<delegatePattern>true</delegatePattern>
+								<useTags>true</useTags>
+								<openApiNullable>false</openApiNullable>
+								<useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
 								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
-                                <useResponseEntity>true</useResponseEntity>
-                                <useSpringController>true</useSpringController>
+								<useResponseEntity>true</useResponseEntity>
+								<useSpringController>true</useSpringController>
 							</configOptions>
 						</configuration>
 					</execution>
-					
+
 					<!-- BackOffice to RegistroImprese (botori-server-lib) -->
-					
+
 					<execution>
 						<id>bo_to_ri-api</id>
 						<phase>generate-sources</phase>
@@ -225,20 +232,21 @@
 								<dateLibrary>java8</dateLibrary>
 								<apiPackage>it.infocamere.suap.sucr.controller.ri</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
-                                <openApiNullable>false</openApiNullable>
-                                <useBeanValidation>false</useBeanValidation>
+								<delegatePattern>true</delegatePattern>
+								<useTags>true</useTags>
+								<openApiNullable>false</openApiNullable>
+								<useBeanValidation>false</useBeanValidation>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<useJakartaEe>false</useJakartaEe>
 								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
-                                <useResponseEntity>true</useResponseEntity>
-                                <useSpringController>true</useSpringController>
+								<useResponseEntity>true</useResponseEntity>
+								<useSpringController>true</useSpringController>
 							</configOptions>
 						</configuration>
 					</execution>
-					
-					<!-- FrontOffice to BackOffice (fotobo-server-lib) -->
-					
+
+					<!-- FrontOffice to BackOffice (fotobo-server-lib)
+
 					<execution>
 						<id>fo_to_bo-api</id>
 						<phase>generate-sources</phase>
@@ -264,9 +272,9 @@
 							</configOptions>
 						</configuration>
 					</execution>
-					
-					<!-- FrontOffice to ComUnica (fotobo-server-lib) -->
-					
+
+					 FrontOffice to ComUnica (fotobo-server-lib)
+
 					<execution>
 						<id>fo_to_cu-api</id>
 						<phase>generate-sources</phase>
@@ -292,9 +300,9 @@
 							</configOptions>
 						</configuration>
 					</execution>
-					
-					<!-- FrontOffice for FDI (Classificazione FDI) -->
-					
+
+					 FrontOffice for FDI (Classificazione FDI)
+
 					<execution>
 						<id>classificazione-fdi</id>
 						<phase>generate-sources</phase>
@@ -319,7 +327,10 @@
                                 <useSpringController>true</useSpringController>
 							</configOptions>
 						</configuration>
-					</execution>
+
+
+					</execution> -->
+
 				</executions>
 			</plugin>
 		</plugins>
