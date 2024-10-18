@@ -171,7 +171,7 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.controller.fo</apiPackage>
+								<apiPackage>it.infocamere.suap.sucr.api.fo</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
 								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
@@ -201,7 +201,7 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.controller.et</apiPackage>
+								<apiPackage>it.infocamere.suap.sucr.api.et</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
 								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
@@ -230,7 +230,7 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.controller.ri</apiPackage>
+								<apiPackage>it.infocamere.suap.sucr.api.ri</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
 								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
