@@ -57,7 +57,7 @@
 		<jakarta.annotation-api.version>1.3.2</jakarta.annotation-api.version>
 		<jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
 		<jakarta.validation-api.version>2.0.1.Final</jakarta.validation-api.version>
-		<openapi.spec.path>${project.basedir}/src/main/resources/openapi/approve01</openapi.spec.path>
+		<openapi.spec.path>${project.basedir}/src/main/resources/openapi/approved01</openapi.spec.path>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -145,20 +145,38 @@
 			  <version>${openapi-generator-maven-plugin.version}</version>
 				<executions>
 
-							<!-- README#openapi-generator-spring-config-options -->
-							<!--
-	                        <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
-	                        <generateApis>true</generateApis>
-	                        <generateApiDocumentation>false</generateApiDocumentation>
-	                        <generateApiTests>false</generateApiTests>
-	                        <generateModels>true</generateModels>
-	                        <generateModelDocumentation>false</generateModelDocumentation>
-	                        <generateModelTests>false</generateModelTests>
-	                        <generateSupportingFiles>false</generateSupportingFiles>
-	                        -->
+					<!-- README#openapi-generator-spring-config-options -->
+					<!--
+                    <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+                    <generateApis>true</generateApis>
+                    <generateApiDocumentation>false</generateApiDocumentation>
+                    <generateApiTests>false</generateApiTests>
+                    <generateModels>true</generateModels>
+                    <generateModelDocumentation>false</generateModelDocumentation>
+                    <generateModelTests>false</generateModelTests>
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    -->
+
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${openapi.spec.path}/bo_to_fo.yaml</inputSpec>
+							<generatorName>spring</generatorName>
+							<output>${project.build.directory}/generated-sources/openapi</output>
+							<configOptions>
+								<dateLibrary>java8</dateLibrary>
+								<apiPackage>it.infocamere.suap.sucr.fo.api</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.fo.model</modelPackage>
+								<serializableModel>true</serializableModel>
+								<useTags>true</useTags>
+							</configOptions>
+						</configuration>
+					</execution>
 
 					<!-- BackOffice to FrontOffice (botofo-server-lib) -->
-
+					<!--
 					<execution>
 						<id>bo_to_fo-api</id>
 						<phase>generate-sources</phase>
@@ -168,12 +186,13 @@
 						<configuration>
 							<inputSpec>${openapi.spec.path}/bo_to_fo.yaml</inputSpec>
 							<generatorName>spring</generatorName>
+							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring</templateResourcePath>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.api.fo</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
-								<delegatePattern>true</delegatePattern>
+								<apiPackage>it.infocamere.suap.sucr.fo.api</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.fo.model</modelPackage>
+								<delegatePattern>false</delegatePattern>
 								<useTags>true</useTags>
 								<openApiNullable>false</openApiNullable>
 								<useBeanValidation>false</useBeanValidation>
@@ -185,9 +204,8 @@
 							</configOptions>
 						</configuration>
 					</execution>
-
-					 <!-- BackOffice to EnteTerzo (botoet-server-lib) -->
-
+-->
+					<!-- BackOffice to EnteTerzo (botoet-server-lib) -->
 					<execution>
 						<id>bo_to_et-api</id>
 						<phase>generate-sources</phase>
@@ -201,9 +219,9 @@
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.api.et</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
-								<delegatePattern>true</delegatePattern>
+								<apiPackage>it.infocamere.suap.sucr.et.api</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.et.model</modelPackage>
+								<delegatePattern>false</delegatePattern>
 								<useTags>true</useTags>
 								<openApiNullable>false</openApiNullable>
 								<useBeanValidation>false</useBeanValidation>
@@ -217,7 +235,6 @@
 					</execution>
 
 					<!-- BackOffice to RegistroImprese (botori-server-lib) -->
-
 					<execution>
 						<id>bo_to_ri-api</id>
 						<phase>generate-sources</phase>
@@ -227,11 +244,12 @@
 						<configuration>
 							<inputSpec>${openapi.spec.path}/bo_to_ri.yaml</inputSpec>
 							<generatorName>spring</generatorName>
+							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring</templateResourcePath>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.api.ri</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.ri.api</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.ri.model</modelPackage>
 								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
 								<openApiNullable>false</openApiNullable>
@@ -246,7 +264,6 @@
 					</execution>
 
 					<!-- FrontOffice to BackOffice (fotobo-server-lib)
-
 					<execution>
 						<id>fo_to_bo-api</id>
 						<phase>generate-sources</phase>
@@ -274,7 +291,6 @@
 					</execution>
 
 					 FrontOffice to ComUnica (fotobo-server-lib)
-
 					<execution>
 						<id>fo_to_cu-api</id>
 						<phase>generate-sources</phase>
@@ -302,7 +318,6 @@
 					</execution>
 
 					 FrontOffice for FDI (Classificazione FDI)
-
 					<execution>
 						<id>classificazione-fdi</id>
 						<phase>generate-sources</phase>
@@ -327,12 +342,13 @@
                                 <useSpringController>true</useSpringController>
 							</configOptions>
 						</configuration>
-
-
 					</execution> -->
 
 				</executions>
 			</plugin>
+			
+
+
 		</plugins>
 	</build>
 
