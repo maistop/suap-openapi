@@ -155,6 +155,8 @@
                     <generateModelDocumentation>false</generateModelDocumentation>
                     <generateModelTests>false</generateModelTests>
                     <generateSupportingFiles>false</generateSupportingFiles>
+                    	<documentationProvider>springfox</documentationProvider>
+                    	<useResponseEntity>false</useResponseEntity>
                     -->
 
 					<execution>
@@ -165,46 +167,17 @@
 							<inputSpec>${openapi.spec.path}/bo_to_fo.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<output>${project.build.directory}/generated-sources/openapi</output>
+							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring/fo</templateResourcePath>
 							<configOptions>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.fo.api</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.fo.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.api.fo</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
 								<serializableModel>true</serializableModel>
+								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
 					</execution>
-
-					<!-- BackOffice to FrontOffice (botofo-server-lib) -->
-					<!--
-					<execution>
-						<id>bo_to_fo-api</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${openapi.spec.path}/bo_to_fo.yaml</inputSpec>
-							<generatorName>spring</generatorName>
-							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring</templateResourcePath>
-							<configOptions>
-								<sourceFolder>src/main/java</sourceFolder>
-								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.fo.api</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.fo.model</modelPackage>
-								<delegatePattern>false</delegatePattern>
-								<useTags>true</useTags>
-								<openApiNullable>false</openApiNullable>
-								<useBeanValidation>false</useBeanValidation>
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<useJakartaEe>false</useJakartaEe>
-								<serializableModel>true</serializableModel>
-								<useResponseEntity>true</useResponseEntity>
-								<useSpringController>true</useSpringController>
-							</configOptions>
-						</configuration>
-					</execution>
--->
 					<!-- BackOffice to EnteTerzo (botoet-server-lib) -->
 					<execution>
 						<id>bo_to_et-api</id>
@@ -215,21 +188,15 @@
 						<configuration>
 							<inputSpec>${openapi.spec.path}/bo_to_et.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring</templateResourcePath>
+							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring/et</templateResourcePath>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.et.api</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.et.model</modelPackage>
-								<delegatePattern>false</delegatePattern>
+								<apiPackage>it.infocamere.suap.sucr.api.et</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
+								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
-								<openApiNullable>false</openApiNullable>
-								<useBeanValidation>false</useBeanValidation>
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<useJakartaEe>false</useJakartaEe>
 								<serializableModel>true</serializableModel>
-								<useResponseEntity>true</useResponseEntity>
-								<useSpringController>true</useSpringController>
 							</configOptions>
 						</configuration>
 					</execution>
@@ -244,109 +211,21 @@
 						<configuration>
 							<inputSpec>${openapi.spec.path}/bo_to_ri.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring</templateResourcePath>
+							<templateResourcePath>${project.basedir}/src/main/resources/openapi/templates/javaSpring/ri</templateResourcePath>
 							<configOptions>
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sucr.ri.api</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.ri.model</modelPackage>
+								<apiPackage>it.infocamere.suap.sucr.api.ri</apiPackage>
+								<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
 								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
-								<openApiNullable>false</openApiNullable>
-								<useBeanValidation>false</useBeanValidation>
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<useJakartaEe>false</useJakartaEe>
 								<serializableModel>true</serializableModel>
-								<useResponseEntity>true</useResponseEntity>
-								<useSpringController>true</useSpringController>
+
 							</configOptions>
 						</configuration>
 					</execution>
-
-					<!-- FrontOffice to BackOffice (fotobo-server-lib)
-					<execution>
-						<id>fo_to_bo-api</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${openapi.spec.path}/fo_to_bo.yaml</inputSpec>
-							<generatorName>spring</generatorName>
-							<configOptions>
-								<sourceFolder>src/main/java</sourceFolder>
-								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sufo.bo.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sufo.bo.model</modelPackage>
-                                <openApiNullable>false</openApiNullable>
-                                <useBeanValidation>false</useBeanValidation>
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<useJakartaEe>false</useJakartaEe>
-								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
-                                <useResponseEntity>true</useResponseEntity>
-                                <useSpringController>true</useSpringController>
-							</configOptions>
-						</configuration>
-					</execution>
-
-					 FrontOffice to ComUnica (fotobo-server-lib)
-					<execution>
-						<id>fo_to_cu-api</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${openapi.spec.path}/fo_to_cu.yaml</inputSpec>
-							<generatorName>spring</generatorName>
-							<configOptions>
-								<sourceFolder>src/main/java</sourceFolder>
-								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.sufo.cu.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.sufo.cu.model</modelPackage>
-                                <openApiNullable>false</openApiNullable>
-                                <useBeanValidation>false</useBeanValidation>
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<useJakartaEe>false</useJakartaEe>
-								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
-                                <useResponseEntity>true</useResponseEntity>
-                                <useSpringController>true</useSpringController>
-							</configOptions>
-						</configuration>
-					</execution>
-
-					 FrontOffice for FDI (Classificazione FDI)
-					<execution>
-						<id>classificazione-fdi</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/fdi/FO-TO-BO-Classificazione-FDI.yml</inputSpec>
-							<generatorName>spring</generatorName>
-							<configOptions>
-								<sourceFolder>src/main/java</sourceFolder>
-								<dateLibrary>java8</dateLibrary>
-								<apiPackage>it.infocamere.suap.fdi.controller</apiPackage>
-								<modelPackage>it.infocamere.suap.fdi.model</modelPackage>
-                                <openApiNullable>false</openApiNullable>
-                                <useBeanValidation>false</useBeanValidation>
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<useJakartaEe>false</useJakartaEe>
-								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
-                                <useResponseEntity>true</useResponseEntity>
-                                <useSpringController>true</useSpringController>
-							</configOptions>
-						</configuration>
-					</execution> -->
-
 				</executions>
 			</plugin>
-			
 
 
 		</plugins>
