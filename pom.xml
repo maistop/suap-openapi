@@ -58,6 +58,7 @@
 		<jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
 		<jakarta.validation-api.version>2.0.1.Final</jakarta.validation-api.version>
 		<openapi.spec.path>${project.basedir}/src/main/resources/openapi/approved01</openapi.spec.path>
+		<swagger-codegen-maven-plugin.version>3.0.62</swagger-codegen-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -120,6 +121,15 @@
 			<artifactId>validation-api</artifactId>
 			<version>${jakarta.validation-api.version}</version>
 		</dependency>
+
+
+
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -129,6 +139,82 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+
+			<plugin>
+			<groupId>io.swagger.codegen.v3</groupId>
+			<artifactId>swagger-codegen-maven-plugin</artifactId>
+			<version>${swagger-codegen-maven-plugin.version}</version>
+			<executions>
+			<execution>
+				<id>FrontOffice</id>
+				<goals>
+					<goal>generate</goal>
+				</goals>
+				<configuration>
+					<inputSpec>${project.basedir}/src/main/resources/openapi/approved01/bo_to_fo.yaml</inputSpec>
+					<language>java</language>
+					<library>resttemplate</library>
+					<generateApis>false</generateApis>
+					<generateModelDocumentation>false</generateModelDocumentation>
+					<generateSupportingFiles>false</generateSupportingFiles>
+					<generateApiDocumentation>false</generateApiDocumentation>
+					<output>${project.build.directory}/generated-sources/openapi</output>
+					<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
+					<configOptions>
+						<sourceFolder>src/main/java</sourceFolder>
+						<java8>true</java8>
+						<serializableModel>true</serializableModel>
+					</configOptions>
+				</configuration>
+			</execution>
+				<execution>
+					<id>EnteTerzo</id>
+					<goals>
+						<goal>generate</goal>
+					</goals>
+					<configuration>
+						<inputSpec>${project.basedir}/src/main/resources/openapi/approved01/bo_to_et.yaml</inputSpec>
+						<language>java</language>
+						<library>resttemplate</library>
+						<generateApis>false</generateApis>
+						<generateModelDocumentation>false</generateModelDocumentation>
+						<generateSupportingFiles>false</generateSupportingFiles>
+						<generateApiDocumentation>false</generateApiDocumentation>
+						<output>${project.build.directory}/generated-sources/openapi</output>
+						<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
+						<configOptions>
+							<sourceFolder>src/main/java</sourceFolder>
+							<java8>true</java8>
+							<serializableModel>true</serializableModel>
+						</configOptions>
+					</configuration>
+				</execution>
+				<execution>
+					<id>RegistroImprese</id>
+					<goals>
+						<goal>generate</goal>
+					</goals>
+					<configuration>
+						<inputSpec>${project.basedir}/src/main/resources/openapi/approved01/bo_to_ri.yaml</inputSpec>
+						<language>java</language>
+						<library>resttemplate</library>
+						<generateApis>false</generateApis>
+						<generateModelDocumentation>false</generateModelDocumentation>
+						<generateSupportingFiles>false</generateSupportingFiles>
+						<generateApiDocumentation>false</generateApiDocumentation>
+						<output>${project.build.directory}/generated-sources/openapi</output>
+						<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
+						<configOptions>
+							<sourceFolder>src/main/java</sourceFolder>
+							<java8>true</java8>
+							<serializableModel>true</serializableModel>
+						</configOptions>
+					</configuration>
+				</execution>
+			</executions>
+			</plugin>
+
+
 			<!-- Generazione del codice server OpenAPI -->
 			<!-- See https://openapi-generator.tech/docs/generators/java/ for config options -->
 			<plugin>
@@ -137,7 +223,19 @@
 			  <version>${openapi-generator-maven-plugin.version}</version>
 				<executions>
 					<!-- README#openapi-generator-spring-config-options -->
-					<!-- BackOffice to FrontOffice (botofo-server-lib) -->
+					<!--
+                    <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+                    <generateApis>true</generateApis>
+                    <generateApiDocumentation>false</generateApiDocumentation>
+                    <generateApiTests>false</generateApiTests>
+                    <generateModels>true</generateModels>
+                    <generateModelDocumentation>false</generateModelDocumentation>
+                    <generateModelTests>false</generateModelTests>
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    	<documentationProvider>springfox</documentationProvider>
+                    	<useResponseEntity>false</useResponseEntity> -->
+
+
 					<execution>
 						<goals>
 							<goal>generate</goal>
@@ -154,6 +252,7 @@
 								<serializableModel>true</serializableModel>
 								<delegatePattern>false</delegatePattern>
 								<useTags>true</useTags>
+								<includeOnly>Api</includeOnly>
 							</configOptions>
 						</configuration>
 					</execution>
@@ -172,10 +271,10 @@
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
 								<apiPackage>it.infocamere.suap.sucr.api.et</apiPackage>
-								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
-								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
+								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
+								<serializableModel>true</serializableModel>
+								<includeOnly>Api</includeOnly>
 							</configOptions>
 						</configuration>
 					</execution>
@@ -198,6 +297,7 @@
 								<serializableModel>true</serializableModel>
 								<delegatePattern>false</delegatePattern>
 								<useTags>true</useTags>
+								<includeOnly>Api</includeOnly>
 							</configOptions>
 						</configuration>
 					</execution>
