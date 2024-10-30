@@ -79,7 +79,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
+		
 		<!--Librerie per codice autogenerato openapi -->
 		<dependency>
 			<groupId>org.openapitools</groupId>
@@ -120,13 +120,6 @@
 			<artifactId>validation-api</artifactId>
 			<version>${jakarta.validation-api.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>io.swagger.core.v3</groupId>
-			<artifactId>swagger-annotations</artifactId>
-			<version>${swagger-annotations.version}</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -136,7 +129,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-
 			<!-- Generazione del codice server OpenAPI -->
 			<!-- See https://openapi-generator.tech/docs/generators/java/ for config options -->
 			<plugin>
@@ -144,21 +136,8 @@
 			  <artifactId>openapi-generator-maven-plugin</artifactId>
 			  <version>${openapi-generator-maven-plugin.version}</version>
 				<executions>
-
 					<!-- README#openapi-generator-spring-config-options -->
-					<!--
-                    <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
-                    <generateApis>true</generateApis>
-                    <generateApiDocumentation>false</generateApiDocumentation>
-                    <generateApiTests>false</generateApiTests>
-                    <generateModels>true</generateModels>
-                    <generateModelDocumentation>false</generateModelDocumentation>
-                    <generateModelTests>false</generateModelTests>
-                    <generateSupportingFiles>false</generateSupportingFiles>
-                    	<documentationProvider>springfox</documentationProvider>
-                    	<useResponseEntity>false</useResponseEntity>
-                    -->
-
+					<!-- BackOffice to FrontOffice (botofo-server-lib) -->
 					<execution>
 						<goals>
 							<goal>generate</goal>
@@ -173,7 +152,7 @@
 								<apiPackage>it.infocamere.suap.sucr.api.fo</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
 								<serializableModel>true</serializableModel>
-								<delegatePattern>true</delegatePattern>
+								<delegatePattern>false</delegatePattern>
 								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
@@ -194,13 +173,12 @@
 								<dateLibrary>java8</dateLibrary>
 								<apiPackage>it.infocamere.suap.sucr.api.et</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
-								<delegatePattern>true</delegatePattern>
-								<useTags>true</useTags>
 								<serializableModel>true</serializableModel>
+								<delegatePattern>false</delegatePattern>
+								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
 					</execution>
-
 					<!-- BackOffice to RegistroImprese (botori-server-lib) -->
 					<execution>
 						<id>bo_to_ri-api</id>
@@ -217,17 +195,14 @@
 								<dateLibrary>java8</dateLibrary>
 								<apiPackage>it.infocamere.suap.sucr.api.ri</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
-								<delegatePattern>true</delegatePattern>
-								<useTags>true</useTags>
 								<serializableModel>true</serializableModel>
-
+								<delegatePattern>false</delegatePattern>
+								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
-
 		</plugins>
 	</build>
 
