@@ -122,8 +122,6 @@
 			<version>${jakarta.validation-api.version}</version>
 		</dependency>
 
-
-
 		<dependency>
 			<groupId>io.swagger.core.v3</groupId>
 			<artifactId>swagger-annotations</artifactId>
@@ -139,11 +137,11 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-
 			<plugin>
 			<groupId>io.swagger.codegen.v3</groupId>
 			<artifactId>swagger-codegen-maven-plugin</artifactId>
 			<version>${swagger-codegen-maven-plugin.version}</version>
+			
 			<executions>
 			<execution>
 				<id>FrontOffice</id>
@@ -151,7 +149,7 @@
 					<goal>generate</goal>
 				</goals>
 				<configuration>
-					<inputSpec>${project.basedir}/src/main/resources/openapi/approved01/bo_to_fo.yaml</inputSpec>
+					<inputSpec>${openapi.spec.path}/bo_to_fo.yaml</inputSpec>
 					<language>java</language>
 					<library>resttemplate</library>
 					<generateApis>false</generateApis>
@@ -173,7 +171,7 @@
 						<goal>generate</goal>
 					</goals>
 					<configuration>
-						<inputSpec>${project.basedir}/src/main/resources/openapi/approved01/bo_to_et.yaml</inputSpec>
+						<inputSpec>${openapi.spec.path}/bo_to_et.yaml</inputSpec>
 						<language>java</language>
 						<library>resttemplate</library>
 						<generateApis>false</generateApis>
@@ -195,7 +193,7 @@
 						<goal>generate</goal>
 					</goals>
 					<configuration>
-						<inputSpec>${project.basedir}/src/main/resources/openapi/approved01/bo_to_ri.yaml</inputSpec>
+						<inputSpec>${openapi.spec.path}/bo_to_ri.yaml</inputSpec>
 						<language>java</language>
 						<library>resttemplate</library>
 						<generateApis>false</generateApis>
@@ -213,7 +211,6 @@
 				</execution>
 			</executions>
 			</plugin>
-
 
 			<!-- Generazione del codice server OpenAPI -->
 			<!-- See https://openapi-generator.tech/docs/generators/java/ for config options -->
@@ -235,8 +232,9 @@
                     	<documentationProvider>springfox</documentationProvider>
                     	<useResponseEntity>false</useResponseEntity> -->
 
-
 					<execution>
+						<id>bo_to_fo-api</id>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -271,9 +269,9 @@
 								<sourceFolder>src/main/java</sourceFolder>
 								<dateLibrary>java8</dateLibrary>
 								<apiPackage>it.infocamere.suap.sucr.api.et</apiPackage>
+								<serializableModel>true</serializableModel>
 								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
-								<serializableModel>true</serializableModel>
 								<includeOnly>Api</includeOnly>
 							</configOptions>
 						</configuration>
