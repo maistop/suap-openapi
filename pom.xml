@@ -152,7 +152,7 @@
 								<apiPackage>it.infocamere.suap.sucr.api.fo</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.fo</modelPackage>
 								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
+								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
@@ -174,7 +174,7 @@
 								<apiPackage>it.infocamere.suap.sucr.api.et</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.et</modelPackage>
 								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
+								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
@@ -196,7 +196,7 @@
 								<apiPackage>it.infocamere.suap.sucr.api.ri</apiPackage>
 								<modelPackage>it.infocamere.suap.sucr.model.ri</modelPackage>
 								<serializableModel>true</serializableModel>
-								<delegatePattern>false</delegatePattern>
+								<delegatePattern>true</delegatePattern>
 								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
